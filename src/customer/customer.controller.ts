@@ -2,6 +2,7 @@ import { Controller, Get, Post, Put, Delete, Body, Param, ParseIntPipe, Validati
 import { CustomerService } from './customer.service';
 import { CustomerDTO } from './dto/create-customer.dto';
 import { QueryCustomerDTO } from './dto/query.dto';
+import { UserDTO } from './dto/user.dto';
 
 @Controller('customers')
 export class CustomerController {
@@ -42,4 +43,12 @@ export class CustomerController {
   upsert(@Body() body: CustomerDTO): CustomerDTO {
     return this.customerService.upsert(body);
   }
+
+  @Post('user')
+  createUser(@Body() userdata:UserDTO){
+    console.log("data received")
+    return {message : "user created successfully"}
+  }
+
+
 }
