@@ -1,8 +1,10 @@
 import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
 import { CustomerDTO } from './dto/create-customer.dto';
 import { QueryCustomerDTO } from './dto/query.dto';
+import { LoggerDecorator } from 'src/decorators/logger.decorator';
 
 @Injectable()
+@LoggerDecorator()
 export class CustomerService {
   private customers: CustomerDTO[] = [];
 

@@ -23,7 +23,7 @@ export class EndDateValidation implements ValidatorConstraintInterface {
     const endDate = new Date(value);
     return endDate > startDate;
   }
-  defaultMessage(): string {
+    defaultMessage(): string {
     return 'End date must be greater than start date';
   }
 }
@@ -57,7 +57,21 @@ export class UserDTO {
   @ValidateNested({ each: true })
   @ArrayMinSize(1)
   @ArrayMaxSize(5)
-  @ArrayUnique((task: TaskDTO) => task.title, { message: 'Task titles within this user must be unique.' })
+  @ArrayUnique((task: TaskDTO) => task.title, { message: 'each task title  must be unique.'})
   @Type(() => TaskDTO)
-  tasks: TaskDTO[];
+  tasks: TaskDTO[];  
 }
+
+
+// {
+//   "name": "Harish",
+//   "age": 20,
+//   "tasks": [
+//     {
+//       "title": "Title1",
+//       "startDate": "2025-06-20",
+//       "endDate": "2029-12-05"
+//     }
+    
+//   ]
+// }
