@@ -4,8 +4,9 @@ import { AppService } from './app.service';
 import { CustomerModule } from './customer/customer.module';
 import { LoggerModule } from './logger/logger.module';
 import { RepoModule } from './animal/animal.module';
+import { RepositoryModule } from './repository/repository.module';
 @Module({
-  imports: [CustomerModule,LoggerModule,RepoModule],
+  imports: [CustomerModule,LoggerModule,RepositoryModule],
   controllers: [AppController],
   providers: [AppService],
 })
