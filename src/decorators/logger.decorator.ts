@@ -1,18 +1,24 @@
 import { Logger } from '@nestjs/common';
 
 export function LoggerDecorator() {
-  return function <T extends { new (...args: any[]): {} }>(constructor: T) {
-    const className = constructor.name;
-    const logger = new Logger(className);
-
-    return class extends constructor {
-      constructor(...args: any[]) {
-        const startTime = new Date().toISOString();
-        logger.log(`[${startTime}] Initializing class: ${className}`);
-        super(...args);
-        const endTime = new Date().toISOString();
-        logger.log(`[${endTime}] Finished initializing class: ${className}`);
-      }
+  return function (value) {
+    value.prototype.onModuleInit =  ()=> {
+      Logger.log(`${value.name}  initialized : ${new Date().toLocaleTimeString()}`);
     };
+    value.prototype.onApplicationBootstrap =  () =>{
+      Logger.log(`${value.name}  bootstrap : ${new Date().toLocaleTimeString()}`);
+    };
+      value.prototype.onModuleDestroy =  () =>{
+      Logger.log(`${value.name}  destroyed : ${new Date().toLocaleTimeString()}`);
+    };
+    value.prototype.beforeApplicationShutdown =  () =>{
+      Logger.log(`${value.name}  before shutdown : ${new Date().toLocaleTimeString()}`);
+    };
+    value.prototype.onApplicationShutdown =  () =>{
+      Logger.log(`${value.name}  shutdown : ${new Date().toLocaleTimeString()}`);
+    };
+
+    return value;
+    
   };
 }

@@ -3,8 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CustomerModule } from './customer/customer.module';
 import { LoggerModule } from './logger/logger.module';
+import { RepoModule } from './animal/animal.module';
 @Module({
-  imports: [CustomerModule,LoggerModule],
+  imports: [CustomerModule,LoggerModule,RepoModule],
   controllers: [AppController],
   providers: [AppService],
 })
