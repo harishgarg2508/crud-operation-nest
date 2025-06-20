@@ -70,6 +70,18 @@ export class LRUCache<K, V> {
    }    
   }
  
+  getLru(): V | undefined {
+    const lruNode = this.tail.prev;
+    if(!lruNode) return ;
+    return lruNode.value;
+  }
+
+  getMru(): V | undefined {
+    const mruNode = this.head.next;
+    if(!mruNode) return ;
+    return mruNode.value
+  }
+
   has(key: K): boolean {
     return this.map.has(key);
   }

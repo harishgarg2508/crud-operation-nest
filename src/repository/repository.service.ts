@@ -61,4 +61,12 @@ export class RepositoryService<T> {
       return this.create(type, { ...data, id });
     }
   }
+
+  getLru(): T[] | undefined {
+    return this.db.getLru();
+  }
+
+  getMru(): T[] | undefined {
+    return this.db.getMru();
+  }
 }
